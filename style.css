@@ -1,0 +1,254 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.app {
+  background: white;
+  padding: 20px 25px;
+  border-radius: 8px;
+  width: 500px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+input {
+  flex: 1;
+  padding: 8px;
+  font-size: 16px;
+}
+
+button {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.filters button {
+  flex: 1;
+  margin: 0 3px;
+}
+
+.filters .active {
+  background: #4caf50;
+  color: white;
+}
+.escape {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 15px;
+}
+ul {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 8px 10px;
+  border-radius: 6px;
+  gap: 8px;
+  margin-bottom: 5px;
+  background: #eee;
+  display: flex;
+  width: 100%; /* КРИТИЧНО */
+  /* justify-content: space-between; */
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+li.done {
+  text-decoration: line-through;
+  color: gray;
+  background: #dcdcdc;
+}
+
+.delete {
+  background: red;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+#counter {
+  margin-top: 10px;
+  font-weight: bold;
+}
+.dragging {
+  opacity: 0.5;
+}
+li.drag-over {
+  border-top: 3px solid #4caf50;
+}
+#taskList li {
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
+}
+#taskList.drag-over {
+  border: 3px dashed red;
+}
+li.important {
+  border-left: 4px solid gold;
+  background: #fffbe6;
+}
+
+li.deferred {
+  border-left: 4px solid rgb(241, 132, 161);
+  opacity: 0.7;
+}
+/* основной текст */
+li span.task-text {
+  /* flex: 1 1 0%;  */
+  flex: 1;
+  min-width: 0; /* КРИТИЧНО для обрезки текста */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition:
+    color 0.2s ease,
+    text-decoration-color 0.2s ease;
+}
+li.done span.task-text {
+  text-decoration: line-through;
+  color: #999;
+}
+.task-meta {
+  display: flex;
+  gap: 4px;
+  margin-left: auto; /* ⬅️ КЛЮЧ */
+  flex-shrink: 0;
+  align-items: center;
+}
+/* дата / статус */
+li span.task-date {
+  width: 80px; /* подбери под свой формат даты */
+  text-align: right;
+  padding: right 2px;
+  font-size: 12px;
+  color: hsl(0, 12%, 97%);
+  flex-shrink: 0; /* не сжимается */
+  background: #5f9f61;
+  font-size: 12px;
+}
+li span.task-status {
+  width: 70px;
+  text-align: right;
+  font-size: 12px;
+  color: hsl(0, 12%, 97%);
+  flex-shrink: 0; /* не сжимается */
+  background: #5f9f61;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* кнопки */
+li button.important,
+li button.deferred,
+li button.noimportant,
+li button.nodeferred {
+  width: 32px;
+  height: 24px;
+  flex-shrink: 0; /* не сжимаются */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* важно: убираем стандартные отступы */
+  line-height: 1; /* убирает смещение по вертикали */
+  font-size: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition:
+    opacity 0.15s ease,
+    transform 0.1s ease;
+}
+.task-checkbox {
+  width: 14px; /* уменьшили */
+  min-width: 14px;
+  max-width: 14px;
+  height: 14px;
+  flex: 0 0 14px; /* не участвует в распределении */
+  margin-right: 8px;
+  cursor: pointer;
+  accent-color: #4caf50;
+}
+li:hover {
+  background-color: #f6f8fa;
+}
+li button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+li:active {
+  transform: scale(0.995);
+}
+/* li[data-deadline="overdue"] {
+  border-left: 4px solid #e53935;
+}
+
+li[data-deadline="today"] {
+  border-left: 4px solid #fb8c00;
+}
+
+li[data-deadline="tomorrow"] {
+  border-left: 4px solid #fdd835;
+}
+
+li[data-deadline="future"] {
+  border-left: 4px solid #43a047;
+} */
+.deadline-status.overdue {
+  color: red;
+}
+.deadline-status.today {
+  color: orange;
+}
+.deadline-status.future {
+  color: green;
+}
+.task-status {
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.task-status.overdue {
+  background: #fdecea;
+  color: #c62828;
+}
+.task-status.today {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.task-status.soon {
+  background: #fff8e1;
+  color: #ef6c00;
+}
