@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Todo List — мини-проект</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <h1 id="title">Мои задачи</h1>
+
+      <!-- Форма добавления  -->
+      <div class="form">
+        <input type="text" id="taskInput" placeholder="Новая задача" />
+        <input id="dateInput" type="date" />
+        <button id="addBtn">Добавить</button>
+      </div>
+
+      <!-- Фильтры -->
+      <div class="filters">
+        <button data-filter="all" class="active">Все</button>
+        <button data-filter="active">Активные</button>
+        <button data-filter="done">Выполненные</button>
+        <button data-filter="important">Важные ⭐</button>
+        <button data-filter="deferred">Отложенные ⏰</button>
+      </div>
+      <input type="text" id="searchInput" placeholder="Поиск по задачам..." />
+      <button id="sortDeadline">По дедлайну</button>
+      <button id="sortStatus">По статусу</button>
+      <button id="sortAlpha">А-Я</button>
+
+      <!-- Список задач -->
+      <ul id="taskList"></ul>
+
+      <!-- Счётчик -->
+      <p id="counter">Осталось задач: 0</p>
+      <div class="escape">
+        <button id="undoBtn">Отменить последнее действие ⭠</button>
+        <button id="redoBtn">Вернуть отмененные ⭢</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
